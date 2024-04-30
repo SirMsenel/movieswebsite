@@ -1,0 +1,19 @@
+
+<ul>
+    {% for kategori in kategoriler %}
+        <li> {{ kategori }} </li>
+    {% endfor %}
+</ul>
+
+
+<div id="filmler">
+    {% for film in filmler %}
+        {% if film.anasayfa %}
+        <div>
+            <p> {{ film.film_adi }} </p>
+            <p> {{ film.aciklama }} </p>
+            <img src="{{film.resim}}" alt="">
+        </div>
+        {% endif %}
+    {% endfor %}    
+</div> 
