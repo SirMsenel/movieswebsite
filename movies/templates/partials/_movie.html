@@ -5,6 +5,6 @@
     <div class="card-body">
       <h5 class="card-title">{{ film.film_adi }}</h5>
       <p class="card-text">{{ film.film_adi }}</p>
-      <a href="#" class="btn btn-danger">Details</a>
+      <a href="{% url 'details' film.id %}" class="btn btn-danger">Details</a>
     </div>
   </div>
