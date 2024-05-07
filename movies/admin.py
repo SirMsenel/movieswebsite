@@ -1,6 +1,6 @@
 from django.contrib import admin
-from .models import Category,Movie
+from .models import Film,Rating
 
-admin.site.register(Category)
-admin.site.register(Movie)
+admin.site.register(Film)
+admin.site.register(Rating)
 

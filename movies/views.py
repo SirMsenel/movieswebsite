@@ -1,23 +1,15 @@
-from django.shortcuts import render
-from .models import Category,Movie
+from django.shortcuts import render, get_object_or_404
+from .models import Film,Rating
 
-def home(request):
-    data = {
-        "kategoriler" : Category.objects.all(),
-        "filmler" : Movie.objects.filter(anasayfa=True)
-    }
-    return render(request,"index.html", data)
 
 def movies(request):
     data = {
-        "kategoriler" : Category.objects.all(),
-        "filmler" : Movie.objects.all
+        "filmler" : Film.objects.all()
     }
     return render(request,"movies.html",data)
 
 
 def moviedetails(request, id):
-    data = {
-       "movie" : Movie.objects.get(id=id) 
-    }
-    return render(request,"details.html",data)
+    movie = get_object_or_404(Film, id=id)
+    context = { "movie" :movie}
+    return render(request,"details.html",context)

@@ -8,34 +8,24 @@
     rel="stylesheet" 
     integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" 
     crossorigin="anonymous">
+    <link rel="stylesheet" 
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <title>Document</title>
 </head>
 <body>
 
     {% include 'partials/_navbar.html' %}
 
-      <div class="container mt-3">
-        <div class="row">
-          <div class="col-3">
-            <div class="list-group">
-            {% for kategori in kategoriler %}
-                <a href="#" class="list-group-item list-group-item-action " aria-current="true">
-                    {{ kategori.name }}
-                </a>
-            {% endfor %}
-            </div>
-          </div>
-          <div class="col-9">
-            <div class="row">
+      <div class="container mt-5">
+            <div class="row row-cols-5">
                 {% for film in filmler %}
                     
-                        <div class="col-4">
+                        <div class="col-3">
                             {% include 'partials/_movie.html' %}
                         </div>
                 {% endfor %}   
             </div>
           </div>  
-        </div>
-      </div>
+     
 </body>
 </html>
