@@ -16,16 +16,13 @@
 
     {% include 'partials/_navbar.html' %}
 
-      <div class="container mt-5">
+        <div class="container mt-5">
             <div class="row row-cols-5">
                 {% for film in filmler %}
-                    
-                        <div class="col-3">
-                            {% include 'partials/_movie.html' %}
-                        </div>
-                {% endfor %}   
+                    {% include 'partials/_movie.html' %}
+                {% endfor %}  
             </div>
-          </div>  
+        </div>  
      
 </body>
 </html>
