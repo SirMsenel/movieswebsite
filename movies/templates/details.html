@@ -8,30 +8,50 @@
     rel="stylesheet" 
     integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" 
     crossorigin="anonymous">
+    <link rel="stylesheet" 
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <title>Document</title>
 </head>
 <body>
 
     {% include 'partials/_navbar.html' %}
+  <div class="container mt-5">
+  <h1> {{movie.title}} </h1>
+  <hr>
+      <div class="row">
+        <div class="col-4">
+          <img class="img-fluid"  src="{% static 'img/'|add:movie.poster%}" alt="">
+        </div>
+        <div class="col-8">
+          <p>
+            <span class="badge rounded-pill text-bg-primary"> {{movie.genre}} </span>
+          </p>
 
-      <div class="container mt-3">
-        <div class="row">
-            <div class="col-12">
-                <div class="card mb-3" style="max-width: 540px;">
-                    <div class="row g-0">
-                      <div class="col-md-4">
-                        <img src="{% static 'img/'|add:movie.poster%}" class="img-fluid rounded-start" alt="...">
-                      </div>
-                      <div class="col-md-8">
-                        <div class="card-body">
-                          <h5 class="card-title"> {{ movie.title }} </h5>
-                          <p class="card-text"> {{ movie.overview}} </p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+          <p>{{movie.released |date:"Y" }} - {{movie.certificate}} - {{dura}} </p>
+            <p>{{movie.overview}}</p>
+
+            <br>
+
+            <div class="alert alert-light" role="alert">
+              IMDB Rating : <i class="bi bi-star-fill text-warning"></i> <span class="me-5">8.8/10</span>
+              Your Rating : <i class="bi bi-star-fill  "></i> 8/10
             </div>
+
+           <br>
+
+            <h2>Top Cast</h2>
+              <ul class="list-group">
+                <li class="list-group-item"> {{movie.star1}} </li>
+                <li class="list-group-item">{{movie.star2}}</li>
+                <li class="list-group-item">{{movie.star3}}</li>
+                <li class="list-group-item">{{movie.star4}}</li>
+              </ul>
+
+              <br>
+
+              <h5>Director: {{movie.director}} </h5>
         </div>
       </div>
+  </div>
 </body>
 </html>

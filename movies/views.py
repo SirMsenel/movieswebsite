@@ -11,5 +11,11 @@ def movies(request):
 
 def moviedetails(request, id):
     movie = get_object_or_404(Film, id=id)
-    context = { "movie" :movie}
+    total_second = int(movie.duration.total_seconds())
+    hours = total_second//3600
+    minutes = (total_second % 3600) // 60
+    duration = f"{hours}h {minutes}m" 
+
+
+    context = { "movie" :movie,"dura":duration}
     return render(request,"details.html",context)
