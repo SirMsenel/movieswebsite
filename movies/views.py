@@ -1,8 +1,11 @@
 from django.shortcuts import render, get_object_or_404
 from .models import Film,Rating
+from django.db.models import Avg
 import os, json
 from django.http import HttpResponse
 from datetime import timedelta
+from django.core.paginator import Paginator
+
 
 
 modele_dir = os.path.dirname(__file__)
@@ -35,14 +38,15 @@ def add_films(request):
 
 
 
-
-
-
 def movies(request):
-    data = {
-        "filmler" : Film.objects.all()
-    }
-    return render(request,"movies.html",data)
+    films = Film.objects.all()
+    paginator = Paginator(films, 25)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    context = {"filmler" : films, "page_obj" : page_obj}
+    return render(request,"movies.html",context)
+
+
 
 
 def moviedetails(request, id):
@@ -51,7 +55,7 @@ def moviedetails(request, id):
     hours = total_second//3600
     minutes = (total_second % 3600) // 60
     duration = f"{hours}h {minutes}m" 
+    genres = movie.genre.split(",")
 
-
-    context = { "movie" :movie,"dura":duration}
+    context = { "movie" :movie,"dura":duration,"genres":genres}
     return render(request,"details.html",context)
