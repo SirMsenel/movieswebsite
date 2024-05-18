@@ -1,12 +1,12 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render,redirect, get_object_or_404
 from .models import Film,Rating
 from django.db.models import Avg
 import os, json
 from django.http import HttpResponse
 from datetime import timedelta
 from django.core.paginator import Paginator
-
-
+from django.contrib.auth.models import User
+from random import randint
 
 modele_dir = os.path.dirname(__file__)
 def add_films(request):
@@ -37,6 +37,14 @@ def add_films(request):
 
 
 
+def add_rev(g_film, g_user, g_rating):
+    obj = Rating.objects.update_or_create(
+        film = get_object_or_404(Film, pk=g_film),
+        user = get_object_or_404(User,pk= g_user),
+        rating = g_rating,
+    )
+
+
 
 def movies(request):
     films = Film.objects.all()
@@ -59,3 +67,12 @@ def moviedetails(request, id):
 
     context = { "movie" :movie,"dura":duration,"genres":genres}
     return render(request,"details.html",context)
+
+
+def add_reviews(request):
+    for j in range(0,10000):
+        for i in range(1,5):
+            filmID = randint(1,692)
+            filmRating = randint(1,10)
+            add_rev(filmID,i,filmRating)
+    return redirect("/movies")
